@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 
-class Ocr():
+class Ocr:
     def __init__(self, root):
         self.root = root
         self.root.title("OCR")
@@ -38,7 +38,6 @@ class Ocr():
         scroll_y.config(command=self.txtarea.yview)
         self.txtarea.pack(fill=BOTH, expand=1)
 
-if __name__ == "__main__":
-    root = Tk()
-    Ocr(root)
-    root.mainloop()
+root = Tk()
+Ocr(root)
+root.mainloop()
