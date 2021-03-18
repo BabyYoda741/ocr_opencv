@@ -11,8 +11,8 @@ class Ocr:
         F1 = Frame(self.root)
         F1.place(x=0, y=30, width=640, height=50)
 
-        Button(F1,width=12,text="Open Image",font=("arial", 12), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=0)
-        Button(F1,width=12,text="Start OCR",font=("arial", 12), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=1)
+        Button(F1,width=12,text="Open Image",font=("arial", 13), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=0)
+        Button(F1,width=12,text="Start OCR",font=("arial", 13), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=1)
             
         F2 = Frame(self.root)
         F2.place(x=640, y=80, width=640, height=620)
@@ -26,7 +26,8 @@ class Ocr:
         F3 = Frame(self.root)
         F3.place(x=640, y=30, width=640, height=50)
 
-        Button(F3,width=12,text="Save as Text",font=("arial", 12), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=0)
+        Button(F3,width=12,text="Save as Text",font=("arial", 13), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=0)
+        Button(F3,width=12,text="Search",font=("arial", 13), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=1)
 
         F4 = Frame(self.root)
         F4.place(x=0, y=80, width=640, height=620)
