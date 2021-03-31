@@ -1,6 +1,6 @@
 from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
+#from tkinter import messagebox
+#from tkinter import ttk
 
 class Ocr:
     def __init__(self, root):
