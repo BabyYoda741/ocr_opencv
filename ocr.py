@@ -19,7 +19,7 @@ class Ocr:
         F1.place(x=0, y=30, width=640, height=50)
         Button(F1,width=12,text="Open Image",font=("arial", 13), bg="gray80", bd=1, command=self.imglocate).grid(padx=10,pady=3,row=0, column=0)
         Button(F1,width=12,text="Start OCR",font=("arial", 13), bg="gray80", bd=1, command=self.scan).grid(padx=10,pady=3,row=0, column=1)
-   
+
         F2 = Frame(self.root)
         F2.place(x=640, y=80, width=640, height=620)
         scroll_y = Scrollbar(F2, orient=VERTICAL)
@@ -40,13 +40,12 @@ class Ocr:
         self.txtarea.delete(1.0,END)
         self.img = askopenfilename(filetypes=[("Image files", ".png .jpg .gif .jpeg")])
         self.img = cv2.imread(self.img)
-        self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2GRAY)
-        cv2.imshow('Result',self.img)
-        #show image
-    
+        cv2.imshow('Preview',self.img)
+
     def scan(self):
+        self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2RGB)
         self.txtarea.insert(INSERT, pytesseract.image_to_string(self.img))
-        himg,wimg = self.img.shape
+        himg,wimg,a = self.img.shape
         boxes = pytesseract.image_to_data(self.img)
         for x,b in enumerate(boxes.splitlines()):
             if x!=0:
@@ -54,16 +53,15 @@ class Ocr:
                 if len(b)==12:
                     x,y,w,h = int(b[6]),int(b[7]),int(b[8]),int(b[9])
                     cv2.rectangle(self.img,(x,y),(w+x,h+y),(0,0,255),1)
-                    cv2.putText(self.img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(50,50.255),1)
+                    #cv2.putText(self.img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(50,50.255),1)
                     cv2.imshow('Result',self.img)
-        
+
     def save(self):
         fname = asksaveasfilename(defaultextension=".txt",filetypes=[("Text file", "*.txt")],confirmoverwrite=False)
         fname = fname if ".txt" in fname else fname + ".txt"
         f = open(fname, 'w')
         f.write(pytesseract.image_to_string(self.img))
         f.close()
-
 
 root = Tk()
 Ocr(root)
