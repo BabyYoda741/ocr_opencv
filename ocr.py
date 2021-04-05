@@ -37,6 +37,7 @@ class Ocr:
         F4.place(x=0, y=80, width=640, height=620)
 
     def imglocate(self):
+        self.txtarea.delete(1.0,END)
         self.img = askopenfilename(filetypes=[("Image files", ".png .jpg .gif .jpeg")])
         self.img = cv2.imread(self.img)
         self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2GRAY)
