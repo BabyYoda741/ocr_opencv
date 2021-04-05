@@ -37,18 +37,28 @@ class Ocr:
         F4.place(x=0, y=80, width=640, height=620)
 
     def imglocate(self):
-        self.img = askopenfilename()
+        self.img = askopenfilename(filetypes=[("Image files", ".png .jpg .gif .jpeg")])
         self.img = cv2.imread(self.img)
-        self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2RGB)
+        self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2GRAY)
         cv2.imshow('Result',self.img)
         #show image
     
     def scan(self):
         self.txtarea.insert(INSERT, pytesseract.image_to_string(self.img))
-
+        himg,wimg = self.img.shape
+        boxes = pytesseract.image_to_data(self.img)
+        for x,b in enumerate(boxes.splitlines()):
+            if x!=0:
+                b = b.split()
+                if len(b)==12:
+                    x,y,w,h = int(b[6]),int(b[7]),int(b[8]),int(b[9])
+                    cv2.rectangle(self.img,(x,y),(w+x,h+y),(0,0,255),1)
+                    cv2.putText(self.img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(50,50.255),1)
+                    cv2.imshow('Result',self.img)
+        
     def save(self):
-        dlg = asksaveasfilename(confirmoverwrite=False)
-        fname = dlg
+        fname = asksaveasfilename(defaultextension=".txt",filetypes=[("Text file", "*.txt")],confirmoverwrite=False)
+        fname = fname if ".txt" in fname else fname + ".txt"
         f = open(fname, 'w')
         f.write(pytesseract.image_to_string(self.img))
         f.close()
