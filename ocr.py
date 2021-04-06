@@ -57,7 +57,7 @@ class Ocr:
                     cv2.imshow('Result',self.img)
 
     def save(self):
-        fname = asksaveasfilename(defaultextension=".txt",filetypes=[("Text file", "*.txt")],confirmoverwrite=False)
+        fname = asksaveasfilename(filetypes=[("Text file", ".txt")])
         fname = fname if ".txt" in fname else fname + ".txt"
         f = open(fname, 'w')
         f.write(self.txtarea.get(1.0,END))
