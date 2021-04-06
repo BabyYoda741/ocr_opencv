@@ -44,7 +44,7 @@ class Ocr:
     def scan(self):
         self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2RGB)
         self.txtarea.insert(INSERT, pytesseract.image_to_string(self.img))
-        #himg,wimg,a = self.img.shape
+        himg,wimg,a = self.img.shape
         boxes = pytesseract.image_to_data(self.img)
         for x,b in enumerate(boxes.splitlines()):
             if x!=0:
