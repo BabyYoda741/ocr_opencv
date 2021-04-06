@@ -31,7 +31,6 @@ class Ocr:
         F3 = Frame(self.root)
         F3.place(x=640, y=30, width=640, height=50)
         Button(F3,width=12,text="Save as Text",font=("arial", 13), bg="gray80", bd=1, command=self.save).grid(padx=10,pady=3,row=0, column=0)
-        Button(F3,width=12,text="Search",font=("arial", 13), bg="gray80", bd=1).grid(padx=10,pady=3,row=0, column=1)
 
         F4 = Frame(self.root)
         F4.place(x=0, y=80, width=640, height=620)
