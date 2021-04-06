@@ -14,6 +14,6 @@ tessaract additional install
 
 https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-alpha.20201127.exe
 
-tesseract inatall location 
+tesseract install location 
 
 pytesseract.pytesseract.tesseract_cmd='C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
