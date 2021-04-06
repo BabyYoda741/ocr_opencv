@@ -3,7 +3,7 @@ OCR using ML
 
 prerequisites
 
-install opencv and tessaract
+install opencv and tessaract\n
 pip install opencv-python
 pip install pytessaract
 
