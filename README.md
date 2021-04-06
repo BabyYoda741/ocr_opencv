@@ -5,15 +5,12 @@ prerequisites
 
 install opencv and tessaract 
 
-pip install opencv-python 
+"pip install opencv-python" 
 
-pip install pytessaract 
+"pip install pytessaract" 
 
 
 tessaract additional install 
 
 https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.0.0-alpha.20201127.exe
-
-tesseract install location 
-
-pytesseract.pytesseract.tesseract_cmd='C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+tesseract install location 'C:\Program Files\Tesseract-OCR\'
