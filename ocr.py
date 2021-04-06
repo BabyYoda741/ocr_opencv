@@ -2,6 +2,7 @@ from tkinter import *
 #from tkinter import messagebox
 #from tkinter import ttk
 import cv2
+from cv2 import cv2
 import pytesseract
 #from PIL import Image, ImageTk
 #import numpy
