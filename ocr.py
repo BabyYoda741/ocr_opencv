@@ -60,7 +60,7 @@ class Ocr:
         fname = asksaveasfilename(defaultextension=".txt",filetypes=[("Text file", "*.txt")],confirmoverwrite=False)
         fname = fname if ".txt" in fname else fname + ".txt"
         f = open(fname, 'w')
-        f.write(pytesseract.image_to_string(self.img))
+        f.write(self.txtarea.get(1.0,END))
         f.close()
 
 root = Tk()
