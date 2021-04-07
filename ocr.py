@@ -4,7 +4,7 @@ from tkinter import *
 import cv2
 from cv2 import cv2
 import pytesseract
-#from PIL import Image, ImageTk
+#from PIL import ImageTk, Image
 #import numpy
 from tkinter.filedialog import *
 
@@ -18,8 +18,8 @@ class Ocr:
 
         F1 = Frame(self.root)
         F1.place(x=0, y=30, width=640, height=50)
-        Button(F1,width=12,text="Open Image",font=("arial", 13), bg="gray80", bd=1, command=self.imglocate).grid(padx=10,pady=3,row=0, column=0)
-        Button(F1,width=12,text="Start OCR",font=("arial", 13), bg="gray80", bd=1, command=self.scan).grid(padx=10,pady=3,row=0, column=1)
+        Button(F1,width=12,text="Select Image",font=("arial", 13), bg="gray80", bd=1, command=self.selectimg).grid(padx=10,pady=3,row=0, column=0)
+        Button(F1,width=12,text="Run OCR",font=("arial", 13), bg="gray80", bd=1, command=self.scan).grid(padx=10,pady=3,row=0, column=1)
 
         F2 = Frame(self.root)
         F2.place(x=640, y=80, width=640, height=620)
@@ -32,15 +32,17 @@ class Ocr:
         F3 = Frame(self.root)
         F3.place(x=640, y=30, width=640, height=50)
         Button(F3,width=12,text="Save as Text",font=("arial", 13), bg="gray80", bd=1, command=self.save).grid(padx=10,pady=3,row=0, column=0)
-
+        Button(F3,width=15,text="Open in Notepad",font=("arial", 13), bg="gray80", bd=1, command=self.open).grid(padx=10,pady=3,row=0, column=1)
+                
         F4 = Frame(self.root)
         F4.place(x=0, y=80, width=640, height=620)
-
-    def imglocate(self):
+        #add image in same window
+        
+    def selectimg(self):
         self.txtarea.delete(1.0,END)
         self.img = askopenfilename(filetypes=[("Image files", ".png .jpg .gif .jpeg")])
         self.img = cv2.imread(self.img)
-        cv2.imshow('Preview',self.img)
+        cv2.imshow('Image',self.img)
 
     def scan(self):
         #self.img = cv2.cvtColor(self.img,cv2.COLOR_BGR2GRAY)
@@ -53,8 +55,9 @@ class Ocr:
                 if len(b)==12:
                     x,y,w,h = int(b[6]),int(b[7]),int(b[8]),int(b[9])
                     cv2.rectangle(self.img,(x,y),(w+x,h+y),(0,0,255),1)
-                    #cv2.putText(self.img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,1,(50,50.255),1)
-                    cv2.imshow('Result',self.img)
+                    cv2.putText(self.img,b[11],(x,y),cv2.FONT_HERSHEY_COMPLEX,0.5,(50,50.255),1)
+                    cv2.waitKey(30)
+                    cv2.imshow('Image',self.img)
 
     def save(self):
         fname = asksaveasfilename(filetypes=[("Text file", ".txt")])
@@ -62,6 +65,10 @@ class Ocr:
         f = open(fname, 'w')
         f.write(self.txtarea.get(1.0,END))
         f.close()
+
+    def open(self):
+        fname2 = askopenfilename(filetypes=[("Text file", ".txt")])
+        os.startfile(fname2)
 
 root = Tk()
 Ocr(root)
