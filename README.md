@@ -3,12 +3,13 @@ OCR using ML
 
 prerequisites
 
-(1)install opencv and tessaract 
+(1)Python 3
+
+(2)install opencv and tessaract 
 
 "pip install opencv-python" 
 
 "pip install pytessaract" 
-
 
 (2)tessaract additional install 
 
