@@ -1,12 +1,11 @@
-from tkinter import *
+import tkinter
 from tkinter import messagebox
 #from tkinter import ttk
 import cv2
 from cv2 import cv2
 import pytesseract
-#from PIL import ImageTk, Image
-#import numpy
 from tkinter.filedialog import *
+import os
 
 pytesseract.pytesseract.tesseract_cmd='C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
@@ -17,7 +16,7 @@ class Ocr:
         self.root.geometry("900x650+320+100")
         self.root.configure(bg='cyan3')
         self.img=''
-        fname2=''
+        self.fname2=''
 
         F1 = Frame(self.root,bg='cyan3')
         F1.place(x=130, y=30, width=900, height=50)
@@ -77,9 +76,9 @@ class Ocr:
             f.close()
 
     def opennp(self):
-        fname2 = askopenfilename(filetypes=[("Text file", ".txt")])
-        if fname2!='':
-            os.startfile(fname2)
+        self.fname2 = askopenfilename(filetypes=[("Text file", ".txt")])
+        if self.fname2!='':
+            os.startfile(self.fname2)
 
     def imgclose(self):
         cv2.destroyWindow('Image')
@@ -92,7 +91,6 @@ class Ocr:
 def ResizeWithAspectRatio(image, width=None, height=None, inter=cv2.INTER_AREA):
         dim = None
         (h, w) = image.shape[:2]
-
         if width is None and height is None:
             return image
         if width is None:
@@ -101,7 +99,6 @@ def ResizeWithAspectRatio(image, width=None, height=None, inter=cv2.INTER_AREA):
         else:
             r = width / float(w)
             dim = (width, int(h * r))
-
         return cv2.resize(image, dim, interpolation=inter)    
 
 root = Tk()
